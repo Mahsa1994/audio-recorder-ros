@@ -1,0 +1,14 @@
+# Colcon workspace artifacts
+build/
+install/
+log/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Python packaging
+*.egg-info/
+
+# Test caches
+.pytest_cache/
