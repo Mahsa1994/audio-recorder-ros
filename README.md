@@ -40,7 +40,7 @@ Bag cost, measured: **~6.0 MB/min, ~30 MB per 5-min session**.
 
 ## Setup and running
 
-See `data_collection_steps.txt` step 5. In short:
+See `data_collection_steps.txt` in data collection folder (step 5). In short:
 
 ```bash
 # one-time, host
