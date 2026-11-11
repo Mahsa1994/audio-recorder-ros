@@ -50,10 +50,13 @@ class AudioRecorderNode(Node):
 
     def __init__(self):
         super().__init__('audio_recorder_node')
-        self.device = self.declare_parameter('device', 'USB Composite Device').value
+        # self.device = self.declare_parameter('device', 'USB Composite Device').value
+        self.device = self.declare_parameter(
+            'device',
+            'HD Pro Webcam C920: USB Audio (hw:1,0)').value
         # Must be a rate the device supports natively: the hardware is opened directly,
         # so an unsupported rate fails to open instead of being silently converted.
-        self.sample_rate = self.declare_parameter('sample_rate', 48000).value
+        self.sample_rate = self.declare_parameter('sample_rate', 32000).value
         self.chunk_ms = self.declare_parameter('chunk_ms', 20).value
         self.frame_id = self.declare_parameter('frame_id', 'lavalier_mic').value
         self.auto_gain_control = self.declare_parameter(
@@ -124,7 +127,7 @@ class AudioRecorderNode(Node):
         stream = None
         try:
             stream = sd.InputStream(
-                device=index, samplerate=self.sample_rate, channels=1, dtype='int16',
+                device=index, samplerate=self.sample_rate, channels=2, dtype='int16',
                 blocksize=self.blocksize, latency='low',
                 callback=partial(self._on_audio, self._generation))
             stream.start()
